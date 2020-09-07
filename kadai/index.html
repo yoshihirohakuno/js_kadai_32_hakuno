@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myMemo</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="jquery.qrcode.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+<header>
+<h1>Memo(主に課題など作ったもの管理用)</h1>
+</header>
+<main style="display: none;">
+    <span class="top1">タイトル</span><input type="text" id="key">
+    <span class="top2">内容(URL)</span><input type="text" id="memo">
+
+    <div id=c_btn>
+        <div id="save">Save</div>
+        <div id="clear">AllClear</div>
+        <div id="topclear">古いメモを削除</div>
+        <div id="lastclear">最新のメモの削除</div>
+        <div id="qr_btn">QR生成</div>
+    </div>
+
+<!-- QRコードの実装 -->
+    <div id="qrcode"></div>
+    
+</main>
+<!-- トータル件数を表示させる -->
+    <div id="total">Total</div>
+    <table id="list" >
+        <tr><th width=5%></th><th width=35%>タイトル</th><th width=60%>URL(でなくてもOK)</th></tr>
+<!-- ここに追加データが挿入される -->
+    </table>
+
+     <button id="delete">削除</button>
+    
+<script>
+
+// keyに数値が入っていない場合、if文でアラート表示を変更したい---
+// $("#save").on("click",function(){ 
+//     if($("#key").val() == 0){
+//         alert("入力されてません");
+//         break;
+//     } 
+// });    
+
+
+// フェイドイン----
+$("main").slideDown(500);
+
+//1.Save クリックイベント
+$("#save").on("click",function(){
+    const key = $("#key").val();
+    const memo = $("#memo").val();
+    localStorage.setItem(key,memo);
+    const html = '<tr><td>'+key+'</td><td>'+memo+'</td></tr>';
+    
+    $("#key").val('');
+    $("#memo").val('');
+    const check_b = '<input type="checkbox" id="ckb" name="ckb">';
+    const html_c = '<tr><td>'+check_b+'</td><td>'+key+'</td><td>'+memo+'</td></tr>';
+    $("#list").append(html_c);
+});
+
+//2.clear クリックイベント
+$("#clear").on("click",function(){
+    localStorage.clear();
+    $("#list").empty();
+    alert("全てのデータが削除されます");
+});
+
+//3.ページ読み込み：保存データ取得表示---リロードしてもデータが残る----
+for(let i=0; i<localStorage.length; i++){
+    const key = localStorage.key(i);
+    const memo = localStorage.getItem(key);
+    const html = '<tr><td>'+key+'</td><td>'+memo+'</td></tr>';
+    const check_b = '<input type="checkbox" id="ckb" name="ckb">';
+    const html_c = '<tr><td>'+check_b+'</td><td>'+key+'</td><td>'+memo+'</td></tr>';
+    $("#list").append(html_c);
+}
+
+// 3-1.現在表示数を表示させる方法---
+
+for(let i=0; i<=localStorage.length; i++){
+    let a = localStorage.length;
+    let total = '<div>'+a+'</div>'
+    $("#total").html("現在の登録数は"+total+"件です");
+}
+
+// 4.1レコード削除--localStorage.removeItem(KEYネーム);
+// 古いレコードを削除する
+$("#topclear").on("click",function(){
+    let a = document.getElementById("list");
+    let b = a[0];
+    let top_c = localStorage.key(0);
+    localStorage.removeItem(top_c)
+    list.deleteRow(0);
+    alert("古い履歴を削除します"); 
+});
+
+// 4.２レコード削除--localStorage.removeItem(KEYネーム);
+// 新しいレコードを削除する
+$("#lastclear").on("click",function(){
+    let a = document.getElementById("list");
+    let b = a[a.length - 1];
+    let last_c = localStorage.key(length-1);
+    localStorage.removeItem(last_c)
+    list.deleteRow(-1);
+    alert("新しい履歴を削除します"); 
+});
+
+// 4.3 選択して削除を行う
+$("#delete").on("click",function(){
+    const n = $("#ckb").val()-1;
+    const key = localStorage.key(n);
+    localStorage.removeItem(key);
+    $("#list").empty();
+    location.reload();
+});
+
+
+// QRコードを生成する------
+$("#qr_btn").on("click",function(){
+  const q = $("#memo").val(); 
+  jQuery('#qrcode').qrcode(q);
+  $("qrcode").fadeIn(1000);
+});
+
+</script>
+<footer><small>------- G's の課題を管理 -------</small></footer>
+</body>
+</html>

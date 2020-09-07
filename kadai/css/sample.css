@@ -1,0 +1,106 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+    width:100%;
+}
+header{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+.top1,.top2{
+font-size: 18px;
+display: block;
+padding-top: 10px;
+padding-bottom: 10px;
+text-align: center;
+}
+
+h1{
+    font-size: 100%;
+}
+main{
+    width:100%;
+    display: block;
+    border-bottom:1px solid #ccc;
+    position:relative;
+}
+
+#title{
+    font-size:18px;
+    padding-left: 22px;
+}
+
+#key,#memo{
+    margin:auto;
+    width: 80%;
+    font-size:80%;
+    display: flex;
+    background-color: rgb(241, 239, 239);
+}
+
+table{
+    margin: 8px 3%;
+    border:1px solid #555;
+    width:96%;
+    
+}
+
+td{
+    font-size:16px;
+    background-color:rgb(226, 241, 243);
+    border-bottom: 1px solid #555;
+}
+#c_btn{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#topclear,#lastclear,#save,#clear,#qr_btn{
+    border: 1px solid #666;
+    background-color: #fff;
+    cursor: pointer;
+    margin: 0px 15px;
+    color:#666;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 5px
+    
+}
+
+#topclear:hover,#lastclear:hover,#save:hover,#clear:hover,#qr_btn:hover{
+    background: #0afad2;
+    color:#fff;
+    transform: scale(1.1,1.1);
+    transition: 0.2s all;
+}
+
+
+/* トータル件数 */
+#total{
+    font-size: 16px;
+    padding-left: 35px;
+    display: flex;
+}
+
+#qrcode{
+    width:300px;
+    height:300px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+footer{
+    background-color: #fff;
+    border-bottom:1px solid #ccc;
+    text-align: center;
+    font-size: 20px;
+}
+
+th{
+    font-size: 20px;
+}

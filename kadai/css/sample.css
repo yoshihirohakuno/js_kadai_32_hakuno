@@ -13,6 +13,8 @@ header{
 
 .top1,.top2{
 font-size: 18px;
+font-weight: bold;
+color: white;
 display: block;
 padding-top: 10px;
 padding-bottom: 10px;
@@ -22,12 +24,23 @@ text-align: center;
 h1{
     font-size: 100%;
 }
+
 main{
+
+    background-image: url(../images.jpeg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     width:100%;
     display: block;
-    border-bottom:1px solid #ccc;
     position:relative;
+
 }
+
+
+
+
+
 
 #title{
     font-size:18px;
@@ -72,6 +85,13 @@ td{
     
 }
 
+select{
+    font-size: 17px;
+    display: block;
+    margin: auto;
+    padding: 5px;
+}
+
 #topclear:hover,#lastclear:hover,#save:hover,#clear:hover,#qr_btn:hover{
     background: #0afad2;
     color:#fff;
@@ -83,7 +103,7 @@ td{
 /* トータル件数 */
 #total{
     font-size: 16px;
-    padding-left: 35px;
+    padding-left: 30px;
     display: flex;
 }
 
@@ -102,5 +122,7 @@ footer{
 }
 
 th{
-    font-size: 20px;
+    font-size: 15px;
+    background-color: #0afad2;
+
 }
